@@ -60,7 +60,7 @@ function Login() {
   return (
     <div className="loginPage">
       <div className="loginWrapper">
-        {/* Image section without any gray overlay */}
+        {/* Image section with overlay */}
         <div className="loginImageSection">
           <img src={loginImage} alt="Login Visual" className="loginImage" />
           <div className="imageOverlay">
@@ -72,47 +72,64 @@ function Login() {
           <h1 className="loginTitle">
             {isSignUp ? "Sign Up " : "Log In "}
           </h1>
+          {!isSignUp && (
+            <p className="loginSubtitle">
+              Welcome back! Please log in to your account.
+            </p>
+          )}
           <form onSubmit={handleSubmit}>
             {isSignUp && (
               <>
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="loginInput"
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  className="loginInput"
-                />
+                <div className="inputGroup">
+                  <label className="inputLabel">First Name</label>
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="loginInput"
+                  />
+                </div>
+                <div className="inputGroup">
+                  <label className="inputLabel">Last Name</label>
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="loginInput"
+                  />
+                </div>
               </>
             )}
-            <input
-              type="email"
-              placeholder="you@ucsc.edu"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="loginInput"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="loginInput"
-              required
-            />
+            <div className="inputGroup">
+              <label className="inputLabel">Username</label>
+              <input
+                type="email"
+                placeholder="you@ucsc.edu"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="loginInput"
+                required
+              />
+            </div>
+            <div className="inputGroup">
+              <label className="inputLabel">Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="loginInput"
+                required
+              />
+            </div>
             <button type="submit" className="loginButton">
               {isSignUp ? "Sign Up" : "Log In"}
             </button>
 
             <div className="loginToggle">
-              {isSignUp ? "Already have an account?" : "New to SlugStudy?"}
+              {isSignUp ? "Already have an account?" : "Need an account?"}
               <button
                 type="button"
                 onClick={() => {
