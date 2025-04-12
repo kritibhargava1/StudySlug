@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { auth } from '../firebase'; // Make sure this path matches your project
 
 function SignUp() {
   const [classes, setClasses] = useState([]);
@@ -7,10 +8,9 @@ function SignUp() {
   const [year, setYear] = useState('');
   const [quarter, setQuarter] = useState('');
   const [availability, setAvailability] = useState('');
-  const [mode, setMode] = useState(''); // 'tutor' or 'group'
+  const [mode, setMode] = useState('');
   const [message, setMessage] = useState('');
 
-  // Add a class to the local state
   const addClass = () => {
     if (courseInput && year && quarter) {
       setClasses([...classes, { course: courseInput, year, quarter }]);
@@ -20,15 +20,29 @@ function SignUp() {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { classes, availability, mode };
+
+    const user = auth.currentUser;
+    if (!user) {
+      setMessage('You must be logged in to submit.');
+      return;
+    }
+
+    const payload = {
+      uid: user.uid,
+      email: user.email,
+      classes,
+      availability,
+      mode
+    };
+
     try {
-      const response = await axios.post('/api/signup', payload);
+      const response = await axios.post('http://localhost:4000/api/signup', payload);
       setMessage('Signup successful!');
     } catch (error) {
-      setMessage('Error: ' + error.response.data.error || error.message);
+      console.error(error);
+      setMessage('Error: ' + (error.response?.data?.error || error.message));
     }
   };
 
@@ -80,7 +94,9 @@ function SignUp() {
         </div>
         <button type="submit">Submit</button>
       </form>
+
       {message && <p>{message}</p>}
+
       <div>
         <h3>Classes Added:</h3>
         <ul>
