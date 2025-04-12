@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   setDoc,
-  doc
+  doc,
 } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/login-img.jpg";
@@ -26,13 +26,17 @@ function Login() {
 
     if (isSignUp) {
       try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
         const user = userCredential.user;
 
         await setDoc(doc(db, "users", user.uid), {
           email,
           firstName,
-          lastName
+          lastName,
         });
 
         setMessage(`Welcome, ${firstName}!`);
@@ -56,12 +60,18 @@ function Login() {
   return (
     <div className="loginPage">
       <div className="loginWrapper">
+        {/* Image section without any gray overlay */}
         <div className="loginImageSection">
           <img src={loginImage} alt="Login Visual" className="loginImage" />
+          <div className="imageOverlay">
+            <h2 className="overlayText">Welcome to SlugStudy!</h2>
+          </div>
         </div>
 
         <div className="loginContainer">
-          <h1 className="loginTitle">{isSignUp ? "Sign Up 🐌" : "Log In 🐌"}</h1>
+          <h1 className="loginTitle">
+            {isSignUp ? "Sign Up " : "Log In "}
+          </h1>
           <form onSubmit={handleSubmit}>
             {isSignUp && (
               <>
@@ -102,7 +112,7 @@ function Login() {
             </button>
 
             <div className="loginToggle">
-              {isSignUp ? "Already have an account?" : "Need an account?"}
+              {isSignUp ? "Already have an account?" : "New to SlugStudy?"}
               <button
                 type="button"
                 onClick={() => {
