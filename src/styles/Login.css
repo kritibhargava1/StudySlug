@@ -1,32 +1,49 @@
-/* src/styles/Login.css */
-
 .loginPage {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(to bottom right, #e9d5ff, #bfdbfe);
+    background-color: #FFFFE0;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+  }
+  
+  .loginWrapper {
+    display: flex;
+    width: 100%;
+    max-width: 960px;
+    height: 70vh;
+    background: white;
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .loginImageSection {
+    flex: 1;
+    background-color: #f3f4f6;
+  }
+  
+  .loginImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   .loginContainer {
-    width: 100%;
-    max-width: 420px;
-    background-color: white;
-    border-radius: 1.5rem;
-    padding: 40px 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    flex: 1;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
-    transition: all 0.3s ease-in-out;
   }
   
   .loginTitle {
     font-size: 2rem;
     font-weight: 800;
-    color: #7c3aed;
-    margin-bottom: 1rem;
+    color: #000000;
+    margin-bottom: 1.5rem;
   }
   
   .loginInput {
@@ -35,7 +52,7 @@
     font-size: 1rem;
     border: 1px solid #d1d5db;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
     transition: border 0.3s, box-shadow 0.3s;
   }
   
@@ -47,8 +64,8 @@
   
   .loginButton {
     width: 100%;
-    background-color: #7c3aed;
-    color: white;
+    background-color: #F8DE7E;
+    color: black;
     padding: 12px;
     font-weight: 600;
     font-size: 1rem;
@@ -56,10 +73,11 @@
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
   }
   
   .loginButton:hover {
-    background-color: #6d28d9;
+    background-color: #fcc80c;
   }
   
   .loginToggle {
@@ -71,7 +89,7 @@
   .loginToggleButton {
     background: none;
     border: none;
-    color: #7c3aed;
+    color: #fcc80c; 
     font-weight: 600;
     cursor: pointer;
     margin-left: 8px;
@@ -83,13 +101,7 @@
   .loginMessage {
     font-size: 0.9rem;
     margin-top: 1rem;
-    color: #10b981;
+    color: #000000;
     font-weight: 500;
-  }
-  
-  .loginError {
-    color: #dc2626;
-    font-size: 0.9rem;
-    margin-top: 10px;
   }
   

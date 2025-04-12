@@ -8,7 +8,8 @@ import {
   doc
 } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import '../styles/Login.css';
+import loginImage from "../assets/login-img.jpg";
+import "../styles/Login.css";
 
 function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -54,63 +55,69 @@ function Login() {
 
   return (
     <div className="loginPage">
-      <div className="loginContainer">
-        <h1 className="loginTitle">{isSignUp ? "Sign Up 🐌" : "Log In 🐌"}</h1>
-        <form onSubmit={handleSubmit}>
-          {isSignUp && (
-            <>
-              <input
-                type="text"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="loginInput"
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="loginInput"
-              />
-            </>
-          )}
-          <input
-            type="email"
-            placeholder="you@ucsc.edu"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="loginInput"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="loginInput"
-            required
-          />
-          <button type="submit" className="loginButton">
-            {isSignUp ? "Sign Up" : "Log In"}
-          </button>
+      <div className="loginWrapper">
+        <div className="loginImageSection">
+          <img src={loginImage} alt="Login Visual" className="loginImage" />
+        </div>
 
-          <div className="loginToggle">
-            {isSignUp ? "Already have an account?" : "Need an account?"}
-            <button
-              type="button"
-              onClick={() => {
-                setIsSignUp(!isSignUp);
-                setMessage("");
-              }}
-              className="loginToggleButton"
-            >
-              {isSignUp ? "Log In" : "Sign Up"}
+        <div className="loginContainer">
+          <h1 className="loginTitle">{isSignUp ? "Sign Up 🐌" : "Log In 🐌"}</h1>
+          <form onSubmit={handleSubmit}>
+            {isSignUp && (
+              <>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="loginInput"
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="loginInput"
+                />
+              </>
+            )}
+            <input
+              type="email"
+              placeholder="you@ucsc.edu"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="loginInput"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="loginInput"
+              required
+            />
+            <button type="submit" className="loginButton">
+              {isSignUp ? "Sign Up" : "Log In"}
             </button>
-          </div>
 
-          {message && <p className="loginMessage">{message}</p>}
-        </form>
+            <div className="loginToggle">
+              {isSignUp ? "Already have an account?" : "Need an account?"}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsSignUp(!isSignUp);
+                  setMessage("");
+                }}
+                className="loginToggleButton"
+              >
+                {isSignUp ? "Log In" : "Sign Up"}
+              </button>
+            </div>
+
+            {message && <p className="loginMessage">{message}</p>}
+          </form>
+        </div>
       </div>
     </div>
   );
