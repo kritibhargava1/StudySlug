@@ -1,0 +1,55 @@
+/* Full-screen container with a gradient background */
+.home-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    /* Tailwind's bg-gradient-to-br from-purple-200 to-blue-300 */
+    background: linear-gradient(to bottom right, #E9D5FF, #93C5FD);
+  }
+  
+  /* The inner card */
+  .home-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 768px; /* roughly equal to Tailwind's max-w-3xl (48rem) */
+    border-radius: 1.5rem; /* similar to rounded-3xl */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem; /* equal to p-10 (10 * 0.25rem = 2.5rem) */
+    text-align: center;
+  }
+  
+  /* The title styling */
+  .home-title {
+    font-size: 2.25rem; /* approximation for text-4xl */
+    font-weight: 800; /* extrabold */
+    color: #6B21A8; /* Tailwind's text-purple-700 */
+    margin-bottom: 2rem; /* similar to mb-8 (2rem) */
+  }
+  
+  /* Container for the buttons (navigation tab) */
+  .home-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* equal to gap-4 (usually 1rem) */
+  }
+  
+  /* Individual button styling */
+  .home-button {
+    background-color: #7C3AED; /* bg-purple-600 */
+    color: white;
+    padding: 0.75rem 1.5rem; /* py-3 (0.75rem) and px-6 (1.5rem) */
+    border: none;
+    border-radius: 0.5rem; /* rounded-lg */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover state for buttons */
+  .home-button:hover {
+    background-color: #6D28D9; /* hover:bg-purple-700 */
+  }
+  

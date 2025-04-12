@@ -1,28 +1,45 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Home.css'; // Adjust the path as necessary
 
 function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-200 to-blue-300 flex items-center justify-center px-4">
-      <div className="bg-white w-full max-w-3xl rounded-3xl shadow-lg p-10 text-center">
-        <h1 className="text-4xl font-extrabold text-purple-700 mb-8">
-          Welcome to SlugStudy 🐌
+    <div className="home-container">
+      <div className="home-card">
+        <h1 className="home-title">
+        Find the perfect study buddy. Or the perfect tutor.
         </h1>
-        <div className="flex flex-wrap justify-center gap-4">
-          <button onClick={() => navigate('/how-it-works')} className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+        <div className="home-buttons">
+          <button
+            onClick={() => navigate('/how-it-works')}
+            className="home-button"
+          >
             How it works
           </button>
-          <button onClick={() => navigate('/contact')} className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+          <button
+            onClick={() => navigate('/contact')}
+            className="home-button"
+          >
             Contact us
           </button>
-          <button onClick={() => navigate('/signup')} className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+          <button
+            onClick={() => navigate('/signup')}
+            className="home-button"
+          >
             Sign up page
           </button>
-          <button onClick={() => navigate('/tutors')} className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+          <button
+            onClick={() => navigate('/tutors')}
+            className="home-button"
+          >
             Need help in a subject?
           </button>
-          <button onClick={() => navigate('/study-groups')} className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+          <button
+            onClick={() => navigate('/study-groups')}
+            className="home-button"
+          >
             Looking for a study group?
           </button>
         </div>
