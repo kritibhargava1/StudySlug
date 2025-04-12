@@ -9,7 +9,7 @@ function Home() {
     <div className="home-container">
       <div className="home-card">
         <h1 className="home-title">
-          Welcome to SlugStudy 🐌
+        Find the perfect study buddy. Or the perfect tutor.
         </h1>
         <div className="home-buttons">
           <button
