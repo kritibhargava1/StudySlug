@@ -8,9 +8,10 @@ import {
   doc
 } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import '../styles/Login.css';
 
 function Login() {
-  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");

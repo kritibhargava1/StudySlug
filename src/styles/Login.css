@@ -16,46 +16,42 @@
     max-width: 420px;
     background-color: white;
     border-radius: 1.5rem;
-    padding: 40px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 40px 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     text-align: center;
+    transition: all 0.3s ease-in-out;
   }
   
   .loginTitle {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 800;
     color: #7c3aed;
     margin-bottom: 1rem;
   }
   
-  .loginSubtitle {
-    font-size: 14px;
-    color: #6b7280;
-    margin-bottom: 1.5rem;
-  }
-  
   .loginInput {
     width: 100%;
     padding: 12px 16px;
-    font-size: 16px;
+    font-size: 1rem;
     border: 1px solid #d1d5db;
     border-radius: 10px;
     margin-bottom: 20px;
+    transition: border 0.3s, box-shadow 0.3s;
   }
   
   .loginInput:focus {
     outline: none;
     border-color: #a78bfa;
-    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
   }
   
   .loginButton {
     width: 100%;
     background-color: #7c3aed;
     color: white;
-    padding: 12px 16px;
+    padding: 12px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 1rem;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -66,9 +62,34 @@
     background-color: #6d28d9;
   }
   
+  .loginToggle {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+  
+  .loginToggleButton {
+    background: none;
+    border: none;
+    color: #7c3aed;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 8px;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    padding: 0;
+  }
+  
+  .loginMessage {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: #10b981;
+    font-weight: 500;
+  }
+  
   .loginError {
     color: #dc2626;
-    font-size: 14px;
+    font-size: 0.9rem;
     margin-top: 10px;
   }
   
