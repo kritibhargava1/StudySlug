@@ -1,18 +1,39 @@
-
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import {getAuth } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup
+} from "firebase/auth";
+import {
+  getFirestore,
+  setDoc,
+  doc
+} from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAPuspGQ6QMVCL2IGUI1gej_UDGTJPlonQ",
-  authDomain: "studyslug-82330.firebaseapp.com",
-  projectId: "studyslug-82330",
-  storageBucket: "studyslug-82330.firebasestorage.app",
-  messagingSenderId: "583192423078",
-  appId: "1:583192423078:web:ce351c6087b3f3fd002267",
-  measurementId: "G-YGER3M4G16"
+  apiKey: "AIzaSyDA-QJ-Pwa6zAXz24IwxOUGR4XUEfOkOCc",
+  authDomain: "login-form-b9a7c.firebaseapp.com",
+  projectId: "login-form-b9a7c",
+  storageBucket: "login-form-b9a7c.appspot.com",
+  messagingSenderId: "60291513749",
+  appId: "1:60291513749:web:8005897cfd66a19e45ca9c",
+  measurementId: "G-LELMF53W43"
 };
 
-
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+export {
+  auth,
+  db,
+  provider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  setDoc,
+  doc
+};
