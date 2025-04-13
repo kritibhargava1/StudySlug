@@ -1,0 +1,40 @@
+/* Full-page container with the swirly yellow background and a semi-transparent white overlay */
+.studygroups-container {
+    min-height: 100vh;
+    width: 100vw;
+    background: 
+      linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+      url("../assets/login-img.jpg") center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+  /* White card in the center */
+  .studygroups-card {
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  /* Title styling */
+  .studygroups-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #6b21a8;  /* Purple similar to Tailwind's text-purple-700 */
+    margin-bottom: 1rem;
+  }
+  
+  /* Paragraph text styling */
+  .studygroups-text {
+    font-size: 1rem;
+    color: #4b5563;  /* Approximation of Tailwind's text-gray-600 */
+    margin-top: 1rem;
+  }
+  
