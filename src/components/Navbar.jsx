@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Navbar.css'; // Ensure this path is correct
+import ProfileDropdown from './ProfileDropdown';
+import './Navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -18,17 +19,19 @@ function Navbar() {
           Contact
         </button>
         <button className="navigation-button" onClick={() => navigate('/signup')}>
-          Sign Up
+          Profile
         </button>
         <button className="navigation-button" onClick={() => navigate('/tutors')}>
-          Tutors
+          AI Tutor
         </button>
         <button className="navigation-button" onClick={() => navigate('/matches')}>
-          MatchesPage
+          Study Buddies
         </button>
         <button className="navigation-button" onClick={() => navigate('/meet-now')}>
-          📍 Map Meetup
+          Map
         </button>
+        {/* Place the ProfileDropdown as part of the nav-content */}
+        <ProfileDropdown />
       </div>
     </nav>
   );
