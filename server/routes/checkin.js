@@ -35,9 +35,13 @@ router.get('/', async (req, res) => {
 
     const active = all.filter(entry => {
       const [hour, minute] = entry.availableUntil.split(':');
-      const untilTime = new Date(entry.checkedInAt);
-      untilTime.setHours(parseInt(hour), parseInt(minute));
-      return now < untilTime;
+      const until = new Date(entry.checkedInAt);
+      until.setHours(parseInt(hour), parseInt(minute));
+      
+      const endOfToday = new Date();
+      endOfToday.setHours(23, 59, 59, 999);
+    
+      return until <= endOfToday && new Date() <= until; // still valid today
     });
 
     res.status(200).json(active);
