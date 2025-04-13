@@ -9,6 +9,8 @@ import {
 } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/login-img.jpg";
+import logo from '../assets/logo.png';
+
 import "../styles/Login.css";
 
 function Login() {
@@ -60,7 +62,6 @@ function Login() {
   return (
     <div className="loginPage">
       <div className="loginWrapper">
-        {/* Image section with overlay */}
         <div className="loginImageSection">
           <img src={loginImage} alt="Login Visual" className="loginImage" />
           <div className="imageOverlay">
@@ -69,81 +70,90 @@ function Login() {
         </div>
 
         <div className="loginContainer">
-          <h1 className="loginTitle">
-            {isSignUp ? "Sign Up " : "Log In "}
-          </h1>
-          {!isSignUp && (
+          <div className="loginHeader">
+            <img src={logo} alt="Slug Logo" className="loginLogo" />
+            <h1 className="loginTitle">{isSignUp ? "Sign Up" : "Log In"}</h1>
+          </div>
+
+          {isSignUp ? (
+            <p className="loginSubtitle">
+              Welcome to StudySlug — create an account to get started!
+            </p>
+          ) : (
             <p className="loginSubtitle">
               Welcome back! Please log in to your account.
             </p>
           )}
-          <form onSubmit={handleSubmit}>
-            {isSignUp && (
-              <>
-                <div className="inputGroup">
-                  <label className="inputLabel">First Name</label>
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    className="loginInput"
-                  />
-                </div>
-                <div className="inputGroup">
-                  <label className="inputLabel">Last Name</label>
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    className="loginInput"
-                  />
-                </div>
-              </>
-            )}
-            <div className="inputGroup">
-              <label className="inputLabel">Username</label>
-              <input
-                type="email"
-                placeholder="you@ucsc.edu"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="loginInput"
-                required
-              />
-            </div>
-            <div className="inputGroup">
-              <label className="inputLabel">Password</label>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="loginInput"
-                required
-              />
-            </div>
-            <button type="submit" className="loginButton">
-              {isSignUp ? "Sign Up" : "Log In"}
-            </button>
 
-            <div className="loginToggle">
-              {isSignUp ? "Already have an account?" : "Need an account?"}
-              <button
-                type="button"
-                onClick={() => {
-                  setIsSignUp(!isSignUp);
-                  setMessage("");
-                }}
-                className="loginToggleButton"
-              >
-                {isSignUp ? "Log In" : "Sign Up"}
+          <div className="formWrapper">
+            <form onSubmit={handleSubmit}>
+              {isSignUp && (
+                <>
+                  <div className="inputGroup">
+                    <label className="inputLabel">First Name</label>
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className="loginInput" // ✅ This ensures the style matches
+                    />
+                  </div>
+                  <div className="inputGroup">
+                    <label className="inputLabel">Last Name</label>
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      className="loginInput" // ✅ Must match!
+                    />
+                  </div>
+                </>
+              )}
+              <div className="inputGroup">
+                <label className="inputLabel">Username</label>
+                <input
+                  type="email"
+                  placeholder="you@ucsc.edu"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="loginInput"
+                  required
+                />
+              </div>
+              <div className="inputGroup">
+                <label className="inputLabel">Password</label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="loginInput"
+                  required
+                />
+              </div>
+              <button type="submit" className="loginButton">
+                {isSignUp ? "Sign Up" : "Log In"}
               </button>
-            </div>
 
-            {message && <p className="loginMessage">{message}</p>}
-          </form>
+              <div className="loginToggle">
+                {isSignUp ? "Already have an account?" : "Need an account?"}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsSignUp(!isSignUp);
+                    setMessage("");
+                  }}
+                  className="loginToggleButton"
+                >
+                  {isSignUp ? "Log In" : "Sign Up"}
+                </button>
+              </div>
+
+              {message && <p className="loginMessage">{message}</p>}
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -1,3 +1,8 @@
+
+.loginPage {
+  overflow-y: auto; /* allow scrolling if needed */
+}
+
 /* Overall page styling */
 .loginPage {
   width: 100vw;
@@ -15,7 +20,6 @@
   display: flex;
   width: 100%;
   max-width: 960px;
-  height: 70vh;
   background: white;
   border-radius: 20px;
   overflow: hidden;
@@ -71,6 +75,24 @@
   }
 }
 
+.loginHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.loginLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+}
+
+
 /* Login container (form) styling */
 .loginContainer {
   flex: 1;
@@ -79,6 +101,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 /* Title styling */
@@ -98,6 +122,8 @@
 }
 /* Input fields */
 .loginInput {
+  background-color: white;
+  color: black;
   width: 80%;         /* Use 80% width of the container (you can adjust this percentage) */
   max-width: 400px;   /* Limits the width on larger screens */
   padding: 12px 16px;
@@ -110,8 +136,8 @@
 
 .loginInput:focus {
   outline: none;
-  border-color: #a78bfa;
-  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+  background-color: white;
+  color: black;
 }
 
 /* Button styling */
@@ -176,4 +202,17 @@
   color: #6b7280;
   text-align: center;          /* Center text inside the label */
   width: 100%;                 /* Ensure full width so text is truly centered */
+}
+
+/* Ensures all input groups align and scale the same */
+.inputGroup input {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+}
+
+.inputGroup {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 1.2rem auto;  /* Ensures centered alignment */
 }
