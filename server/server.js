@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+
+
 // Load environment variables from .env
 dotenv.config();
 
@@ -10,8 +12,16 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // 👈 your React app’s port
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
+
+//After app is initialized, add your routes
+import checkinRoutes from './routes/checkin.js';
+app.use('/api/checkin', checkinRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
