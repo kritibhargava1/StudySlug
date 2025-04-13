@@ -47,20 +47,3 @@ body {
   background-color: #fcc80c;
   transform: translateY(-2px);
 }
-
-<<<<<<< HEAD:src/components/Navbar.css
-.nav-profile {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  min-width: 150px;
-}
-=======
-/* Logo styling */
-.nav-logo {
-  height: 50px;       /* Adjust height as needed */
-  margin-right: 1rem; /* Spacing between the logo and the buttons */
-  cursor: pointer;    /* Indicates the logo is clickable */
-}
-
->>>>>>> a38baa730f9dc326008d88883e843eba09fa10ca:src/styles/Navbar.css
