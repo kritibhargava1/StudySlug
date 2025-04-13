@@ -19,7 +19,7 @@ function MainLayout() {
 
   return (
     <>
-      {!isLoginPage && <ProfileDropdown />}
+
       {!isLoginPage && <Navbar />}
 
       <Routes>

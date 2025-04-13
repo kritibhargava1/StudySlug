@@ -1,35 +1,43 @@
-/* Navbar container */
 .navigation-bar {
-  width: 100%;
-  background-color: #ffffe0; /* Light yellow background */
-  position: sticky;
+  position: fixed; /* ✅ Sticks to the very top */
   top: 0;
-  z-index: 10;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-/* Inner container to constrain content width and center it */
-.nav-content {
+  left: 0;
   width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+  background-color: #ffffe0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.4rem 1rem;
 }
 
-/* Navigation buttons */
+/* Adjust page content to not hide under the fixed navbar */
+body {
+  padding-top: 80px; /* ✅ Same as navbar height to avoid overlap */
+}
+
+.nav-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
 .navigation-button {
   background-color: #F8DE7E;
   color: black;
   font-weight: 500;
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -38,4 +46,11 @@
 .navigation-button:hover {
   background-color: #fcc80c;
   transform: translateY(-2px);
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 150px;
 }

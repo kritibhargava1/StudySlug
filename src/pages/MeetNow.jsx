@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import '../styles/MeetNow.css';
 
 // Format 24hr to 12hr time
 const formatTime = (timeStr) => {
@@ -39,7 +40,7 @@ function MeetNow() {
     const fetchCheckins = async () => {
       try {
         const res = await axios.get('http://localhost:9000/api/checkin');
-        console.log('✅ Check-in data:', res.data); // <-- DEBUGGING
+        console.log('✅ Check-in data:', res.data);
         setCheckins(res.data);
       } catch (err) {
         console.error('❌ Failed to fetch check-ins:', err);
@@ -50,29 +51,46 @@ function MeetNow() {
   }, []);
 
   return (
-    <div className="map-wrapper" style={{ height: '80vh', padding: '1rem' }}>
-      <h1 className="text-2xl mb-4">🗺️ Who's Free Right Now</h1>
-      <MapContainer center={[36.9977, -122.0586]} zoom={15} style={{ height: '100%', width: '100%' }}>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    <div className="map-wrapper">
+      <div className="meetnow-title-wrapper">
+        <h1 className="meetnow-heading">Who's Free Right Now?</h1>
+      </div>
 
-        {checkins.map((user, idx) => {
-          const coords = locationCoords[user.location];
-          if (!coords) {
-            console.warn(`⚠️ Location not found: ${user.location}`);
-            return null;
-          }
+      <div className="meetnow-content">
+        <MapContainer
+          center={[36.9977, -122.0586]}
+          zoom={15}
+          className="meetnow-map"
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-          return (
-            <Marker key={idx} position={coords}>
-              <Popup>
-                <strong>{user.email}</strong><br />
-                📍 {user.location}<br />
-                ⏰ Until: {formatTime(user.availableUntil)}
-              </Popup>
-            </Marker>
-          );
-        })}
-      </MapContainer>
+          {checkins.map((user, idx) => {
+            const coords = locationCoords[user.location];
+            if (!coords) {
+              console.warn(`⚠️ Location not found: ${user.location}`);
+              return null;
+            }
+
+            return (
+              <Marker key={idx} position={coords}>
+                <Popup>
+                  <strong>{user.email}</strong><br />
+                  📍 {user.location}<br />
+                  ⏰ Until: {formatTime(user.availableUntil)}
+                </Popup>
+              </Marker>
+            );
+          })}
+        </MapContainer>
+
+        <div className="meetnow-description">
+          <h2>Live Study Map</h2>
+          <p>
+            This map shows where students have checked in to study in real time across the UCSC campus.
+            Click a marker to see who's there and until when. Meet up, collaborate, and study smarter together!
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
