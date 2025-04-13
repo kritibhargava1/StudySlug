@@ -1,0 +1,29 @@
+/* 
+  .map-wrapper takes up the full width and the remaining viewport height 
+  after accounting for the fixed navbar (assuming navbar ~70px high)
+*/
+.map-wrapper {
+    width: 100vw;
+    height: calc(100vh - 70px); /* Adjust if your navbar is taller or shorter */
+    margin-top: 70px;          /* Ensures that the map starts below the fixed navbar */
+    position: relative;
+  }
+  
+  /* Optional: Style the map title above the map */
+  .map-title {
+    position: absolute;
+    top: 0.5rem;
+    width: 100%;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+    z-index: 500;  /* Ensure it appears on top of the map */
+  }
+  
+  /* Map itself covers the entire area of the wrapper */
+  .leaflet-map {
+    height: 100%;
+    width: 100%;
+  }
+  

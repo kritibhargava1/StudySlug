@@ -39,3 +39,11 @@
   background-color: #fcc80c;
   transform: translateY(-2px);
 }
+
+/* Logo styling */
+.nav-logo {
+  height: 50px;       /* Adjust height as needed */
+  margin-right: 1rem; /* Spacing between the logo and the buttons */
+  cursor: pointer;    /* Indicates the logo is clickable */
+}
+

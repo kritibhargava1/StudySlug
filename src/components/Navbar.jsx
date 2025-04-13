@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileDropdown from './ProfileDropdown';
-import './Navbar.css';
+import '../styles/Navbar.css';
+import logo from '../assets/logo.png'; // Import the logo image
 
 function Navbar() {
   const navigate = useNavigate();
@@ -9,6 +10,13 @@ function Navbar() {
   return (
     <nav className="navigation-bar">
       <div className="nav-content">
+        {/* Insert the logo image at the beginning */}
+        <img
+          src={logo}
+          alt="Slug Logo"
+          className="nav-logo"
+          onClick={() => navigate('/home')}
+        />
         <button className="navigation-button" onClick={() => navigate('/home')}>
           Home
         </button>
@@ -19,18 +27,18 @@ function Navbar() {
           Contact
         </button>
         <button className="navigation-button" onClick={() => navigate('/signup')}>
-          Profile
+          Sign Up
         </button>
         <button className="navigation-button" onClick={() => navigate('/tutors')}>
           AI Tutor
         </button>
         <button className="navigation-button" onClick={() => navigate('/matches')}>
-          Study Buddies
+          Study Buddy
         </button>
         <button className="navigation-button" onClick={() => navigate('/meet-now')}>
           Map
         </button>
-        {/* Place the ProfileDropdown as part of the nav-content */}
+        {/* Include the profile button as part of the nav-content */}
         <ProfileDropdown />
       </div>
     </nav>
