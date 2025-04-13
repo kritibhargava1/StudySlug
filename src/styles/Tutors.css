@@ -1,91 +1,136 @@
-/* Tutors.css */
+/* Overall page container with the background image from assets */
 .tutors-container {
-    min-height: 100vh;
-    width: 100vw;
-    background-color: #ffffe0; /* LightYellow background */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  .back-button {
-    align-self: flex-start;
-    margin-bottom: 1rem;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    color: #333;
-    cursor: pointer;
-  }
-  
-  .tutors-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #333;
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-  
-  .tutors-subtitle {
-    font-size: 1.1rem;
-    color: #6b7280;
-    text-align: center;
-    margin-bottom: 2rem;
-    max-width: 600px;
-  }
-  
-  .tutors-form {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .tutors-input {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    resize: vertical;
-  }
-  
-  .tutors-submit {
-    background-color: #F8DE7E;
-    color: black;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .tutors-submit:hover {
-    background-color: #fcc80c;
-  }
-  
-  .tutors-error {
-    margin-top: 1rem;
-    color: #dc2626;
-    font-size: 1rem;
-  }
-  
-  .tutors-answer {
-    margin-top: 2rem;
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    text-align: left;
-  }
-  
-  .tutors-answer h2 {
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-  }
-  
+  min-height: 100vh;
+  width: 100vw;
+  background: url("../assets/login-img.jpg") center center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.tutors-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Chat box container with a subtle shadow and rounded corners */
+.chat-box {
+  width: 90%;
+  max-width: 800px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.messages {
+  height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  margin-bottom: 15px;
+}
+
+.message-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-row.bot {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+  font-size: 0.95rem;
+}
+
+.message-row.user .message-bubble {
+  background-color: #a2d2ff;
+  color: #000;
+}
+
+.message-row.bot .message-bubble {
+  background-color: #e8e8e8;
+  color: #000;
+}
+
+/* Input area with relative positioning for overlay button */
+.input-area {
+  position: relative;
+}
+
+/* Input field styling updated with increased height and right padding */
+.tutors-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 60px 0 15px;
+  font-size: 1rem;
+  border: 1px solid #2563EB;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #a2d2ff, #cde7ff);
+  color: #000;
+  outline: none;
+}
+
+/* Blue square send button styling */
+.tutors-submit {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-58%);
+  height: 52px;
+  width: 52px;
+  background-color: #a2d2ff;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Hover effect for the send button */
+.tutors-submit:hover {
+  background-color: #1e50c2;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Optional: Custom scrollbar styling for the messages area */
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}

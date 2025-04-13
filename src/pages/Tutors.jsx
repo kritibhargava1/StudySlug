@@ -1,41 +1,36 @@
-// src/pages/Tutors.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../styles/Tutors.css';
 
 function Tutors() {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
 
-  // Function that sends the user's message to the backend Gemini API endpoint
+  // Function to send the user's message to the backend Gemini API endpoint
   const sendMessage = async () => {
-    if (!userInput.trim()) return;  // do nothing if input is empty
+    if (!userInput.trim()) return; // Avoid sending empty messages
 
-    // Add user message to the chat history
+    // Add user's message to chat history
     const newUserMessage = { sender: "user", text: userInput };
-    setMessages((prevMessages) => [...prevMessages, newUserMessage]);
+    setMessages(prevMessages => [...prevMessages, newUserMessage]);
 
     try {
-      // Send the message to the Node.js backend
-      const response = await axios.post('http://localhost:9000/api/gemini-chat', {
-        message: userInput,
-        // Optionally, include chat history if required by your API
-        // history: messages,
-      });
+      // Send the message to the backend
+      const response = await axios.post('http://localhost:9000/api/gemini-chat', { message: userInput });
       
-      // Add the bot's reply to the chat history
+      // Add Gemini's reply to chat history
       const newBotMessage = { sender: "bot", text: response.data.text };
-      setMessages((prevMessages) => [...prevMessages, newBotMessage]);
+      setMessages(prevMessages => [...prevMessages, newBotMessage]);
     } catch (error) {
       console.error("Error communicating with Gemini API:", error);
-      // In case of error, add an error message to the chat history
       const errorMessage = { sender: "bot", text: "Sorry, something went wrong. Please try again later." };
-      setMessages((prevMessages) => [...prevMessages, errorMessage]);
+      setMessages(prevMessages => [...prevMessages, errorMessage]);
     }
-    // Clear the input field
+    // Clear the input field after sending
     setUserInput("");
   };
 
-  // When user hits the "Enter" key, send the message
+  // Trigger sendMessage() when Enter is pressed
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       sendMessage();
@@ -43,48 +38,31 @@ function Tutors() {
   };
 
   return (
-    <div className="p-6 text-center">
-      <h1 className="text-3xl font-bold text-purple-700">Tutors</h1>
-      <p className="mt-4 text-gray-600">
-        Need help in a subject? We’ll match you with available tutors taking the same classes.
-      </p>
+    <div className="tutors-container">
+      <h1 className="tutors-title">Gemini AI Tutor</h1>
       
       {/* Chat Interface */}
-      <div className="chat-box mt-6 border border-gray-300 p-4 rounded">
-        <div
-          className="messages mb-4"
-          style={{ height: '300px', overflowY: 'scroll', background: '#f9f9f9', padding: '10px' }}
-        >
+      <div className="chat-box">
+        <div className="messages">
           {messages.map((msg, index) => (
-            <div
-              key={index}
-              style={{
-                textAlign: msg.sender === "user" ? "right" : "left",
-                marginBottom: "8px"
-              }}
-            >
-              <span style={{ fontWeight: "bold", color: msg.sender === "user" ? "#2563EB" : "#16A34A" }}>
-                {msg.sender === "user" ? "You:" : "Gemini:"}
-              </span>{" "}
-              {msg.text}
+            <div key={index} className={`message-row ${msg.sender === "user" ? "user" : "bot"}`}>
+              <div className="message-bubble">
+                <strong>{msg.sender === "user" ? "You:" : "Gemini:"}</strong> {msg.text}
+              </div>
             </div>
           ))}
         </div>
-        <div className="input-area flex">
+        
+        {/* Input Area: Removed the send button */}
+        <div className="input-area">
           <input
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type your message..."
-            className="flex-grow p-2 border border-r-0 rounded-l"
+            placeholder="Type your message and hit enter..."
+            className="tutors-input"
           />
-          <button
-            onClick={sendMessage}
-            className="px-4 py-2 bg-purple-700 text-white rounded-r"
-          >
-            Send
-          </button>
         </div>
       </div>
     </div>
