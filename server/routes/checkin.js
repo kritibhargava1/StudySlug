@@ -29,18 +29,23 @@ router.post('/', async (req, res) => {
 
 // GET: Fetch active check-ins (not expired)
 router.get('/', async (req, res) => {
-  const all = await Checkin.find({});
-  const now = new Date();
+  try {
+    const all = await CheckIn.find({});
+    const now = new Date();
 
-  const active = all.filter(entry => {
-    const [hour, minute] = entry.availableUntil.split(':');
-    const untilTime = new Date(entry.checkedInAt);
-    untilTime.setHours(parseInt(hour), parseInt(minute));
+    const active = all.filter(entry => {
+      const [hour, minute] = entry.availableUntil.split(':');
+      const untilTime = new Date(entry.checkedInAt);
+      untilTime.setHours(parseInt(hour), parseInt(minute));
+      return now < untilTime;
+    });
 
-    return now < untilTime;
-  });
-
-  res.json(active);
+    res.status(200).json(active);
+  } catch (err) {
+    console.error('Error fetching check-ins:', err);
+    res.status(500).json({ error: 'Failed to fetch check-ins' });
+  }
 });
+
 
 export default router;

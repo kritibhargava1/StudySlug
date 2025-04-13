@@ -44,7 +44,7 @@ function CheckInPage() {
     };
 
     try {
-      await axios.post('http://localhost:4000/api/checkin', payload);
+      await axios.post('http://localhost:9000/api/checkin', payload);
       setMessage(`✅ Checked in at ${location}`);
     } catch (err) {
       setMessage('❌ Error checking in');

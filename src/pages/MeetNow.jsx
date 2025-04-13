@@ -3,6 +3,14 @@ import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
+// Format 24hr to 12hr time
+const formatTime = (timeStr) => {
+  const [hour, minute] = timeStr.split(':').map(Number);
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  const displayHour = hour % 12 || 12;
+  return `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
+};
+
 // UCSC campus location coordinates
 const locationCoords = {
   'McHenry Library': [36.9977, -122.0586],
@@ -30,7 +38,8 @@ function MeetNow() {
   useEffect(() => {
     const fetchCheckins = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/checkin');
+        const res = await axios.get('http://localhost:9000/api/checkin');
+        console.log('✅ Check-in data:', res.data); // <-- DEBUGGING
         setCheckins(res.data);
       } catch (err) {
         console.error('❌ Failed to fetch check-ins:', err);
@@ -44,20 +53,24 @@ function MeetNow() {
     <div className="map-wrapper" style={{ height: '80vh', padding: '1rem' }}>
       <h1 className="text-2xl mb-4">🗺️ Who's Free Right Now</h1>
       <MapContainer center={[36.9977, -122.0586]} zoom={15} style={{ height: '100%', width: '100%' }}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
         {checkins.map((user, idx) => {
           const coords = locationCoords[user.location];
-          return coords ? (
+          if (!coords) {
+            console.warn(`⚠️ Location not found: ${user.location}`);
+            return null;
+          }
+
+          return (
             <Marker key={idx} position={coords}>
               <Popup>
                 <strong>{user.email}</strong><br />
                 📍 {user.location}<br />
-                ⏰ Until: {user.availableUntil}
+                ⏰ Until: {formatTime(user.availableUntil)}
               </Popup>
             </Marker>
-          ) : null;
+          );
         })}
       </MapContainer>
     </div>
