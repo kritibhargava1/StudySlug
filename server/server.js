@@ -58,6 +58,34 @@ app.post('/api/signup', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+// Update existing profile
+app.put('/api/update-profile/:uid', async (req, res) => {
+  const { uid } = req.params;
+  const { classes, availability } = req.body;
+
+  if (!uid) {
+    return res.status(400).json({ error: 'Missing UID' });
+  }
+
+  try {
+    const updated = await UserProfile.findOneAndUpdate(
+      { uid },
+      { $set: { classes, availability } },
+      { new: true }
+    );
+
+    if (!updated) {
+      return res.status(404).json({ error: 'Profile not found' });
+    }
+
+    res.status(200).json({ message: 'Profile updated!', user: updated });
+  } catch (err) {
+    console.error('Update error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 
 // ✅ Route to fetch all students
 app.get('/api/all-students', async (req, res) => {
@@ -70,7 +98,20 @@ app.get('/api/all-students', async (req, res) => {
   }
 });
 
+// Check if user already has a profile
+app.get('/api/profile-exists/:uid', async (req, res) => {
+  const { uid } = req.params;
+  try {
+    const user = await UserProfile.findOne({ uid });
+    res.json({ exists: !!user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to check user profile' });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+

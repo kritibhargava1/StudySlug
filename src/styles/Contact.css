@@ -1,0 +1,42 @@
+/* Full-screen container with the same yellow gradient background as HowItWorks */
+.contact-container {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    background: linear-gradient(45deg, #FFF9C4, #FFECB3, #FFF176);
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Centered white card with padding and rounded corners */
+  .contact-card {
+    width: 100%;
+    max-width: 768px;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  
+  /* Title styling: bold and black */
+  .contact-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 2rem;
+  }
+  
+  /* Paragraph text styling */
+  .contact-text {
+    font-size: 1rem;
+    color: #4b5563;
+  }
+  
+  /* Email link styling */
+  .contact-text a {
+    color: #7c3aed;
+    text-decoration: underline;
+  }
+  

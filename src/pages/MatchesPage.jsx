@@ -9,25 +9,31 @@ function MatchesPage() {
   useEffect(() => {
     const fetchAllStudents = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/all-students');
-        const students = res.data;
+        const token = await auth.currentUser.getIdToken();
+        const res = await axios.get('http://localhost:4000/api/all-students', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-        // Filter out duplicate emails (keep the first entry only)
+        // Remove duplicate emails (keep first occurrence)
         const seen = new Set();
-        const filtered = students.filter((student) => {
+        const uniqueStudents = res.data.filter((student) => {
           if (seen.has(student.email)) return false;
           seen.add(student.email);
           return true;
         });
 
-        setAllStudents(filtered);
+        setAllStudents(uniqueStudents);
       } catch (err) {
         console.error(err);
         setError('Failed to fetch student data.');
       }
     };
 
-    fetchAllStudents();
+    if (auth.currentUser) {
+      fetchAllStudents();
+    }
   }, []);
 
   return (
@@ -43,6 +49,7 @@ function MatchesPage() {
               <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Email</th>
               <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Classes</th>
               <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Availability</th>
+              <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Message</th>
             </tr>
           </thead>
           <tbody>
@@ -51,14 +58,14 @@ function MatchesPage() {
                 <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>{student.firstName || ''} {student.lastName || ''}</td>
                 <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>{student.email}</td>
                 <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>
-                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                  <ul>
                     {student.classes?.map((cls, idx) => (
                       <li key={idx}>{cls.course} ({cls.quarter} {cls.year})</li>
                     ))}
                   </ul>
                 </td>
                 <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>
-                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                  <ul>
                     {student.availability &&
                       Object.entries(student.availability).map(([day, slots]) => (
                         <li key={day}>
@@ -66,6 +73,11 @@ function MatchesPage() {
                         </li>
                       ))}
                   </ul>
+                </td>
+                <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>
+                  <button style={{ padding: '6px 10px', backgroundColor: '#7c3aed', color: '#fff', border: 'none', borderRadius: '6px' }}>
+                    Message
+                  </button>
                 </td>
               </tr>
             ))}

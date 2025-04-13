@@ -1,32 +1,15 @@
 /* Full-screen container with a light yellow background */
 .home-container {
-  min-height: 100vh;
   width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   background-color: #ffffe0; /* LightYellow */
-  padding: 1rem;
+  padding: 0rem;
+  box-sizing: border-box;
 }
 
-/* Navigation Tab styling at the top */
-.home-nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Individual button styling for the navigation */
-.home-button {
-  background-color: #F8DE7E;  /* Light yellow button */
-  color: black;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
 .home-button:hover {
   background-color: #fcc80c;

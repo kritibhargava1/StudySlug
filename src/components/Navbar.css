@@ -1,0 +1,35 @@
+/* Navigation container */
+.navigation-bar {
+    width: 100%;
+    max-width: 100vw;
+    background-color: #ffffe0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  /* Navigation buttons */
+  .navigation-button {
+    background-color: #F8DE7E;
+    color: black;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .navigation-button:hover {
+    background-color: #fcc80c;
+    transform: translateY(-1px);
+  }
+  
