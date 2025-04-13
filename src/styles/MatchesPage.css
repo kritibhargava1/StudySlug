@@ -1,0 +1,62 @@
+.matches-container {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #FFF9C4, #FFECB3, #FFF176);
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+  .matches-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  .matches-search-input {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    display: block;
+  }
+  
+  .matches-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #00509d;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  
+  .matches-table th,
+  .matches-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .matches-table th {
+    background-color: #fef3c7;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .matches-button {
+    background-color: #00509d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  .matches-button:hover {
+    background-color: #00509d;
+  }
+  

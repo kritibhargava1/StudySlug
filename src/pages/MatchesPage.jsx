@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { auth } from '../firebase';
+import '../styles/MatchesPage.css';
 
 function MatchesPage() {
   const [allStudents, setAllStudents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -45,37 +47,58 @@ function MatchesPage() {
     }
   }, []);
 
+  const filteredStudents = allStudents.filter((student) => {
+    const lowerSearch = searchTerm.toLowerCase();
+    return (
+      student.email?.toLowerCase().includes(lowerSearch) ||
+      student.classes?.some(cls =>
+        `${cls.course} ${cls.quarter} ${cls.year}`.toLowerCase().includes(lowerSearch)
+      ) ||
+      Object.keys(student.availability || {}).some(day =>
+        day.toLowerCase().includes(lowerSearch)
+      )
+    );
+  });
+
   return (
-    <div style={{ padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
-      <h1>📋 All Students in Database</h1>
+    <div className="matches-container">
+      <h1 className="matches-heading">📋 All Students in Database</h1>
+
+      <input
+        type="text"
+        className="matches-search-input"
+        placeholder="Search by course (e.g. CSE101), email, or day"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
 
       {loading && <p>Loading student data...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      {!loading && allStudents.length > 0 ? (
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      {!loading && searchTerm && filteredStudents.length > 0 ? (
+        <table className="matches-table">
           <thead>
             <tr>
-              <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Name</th>
-              <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Email</th>
-              <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Classes</th>
-              <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Availability</th>
-              <th style={{ borderBottom: '2px solid #ccc', padding: '8px' }}>Message</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Classes</th>
+              <th>Availability</th>
+              <th>Message</th>
             </tr>
           </thead>
           <tbody>
-            {allStudents.map((student) => (
+            {filteredStudents.map((student) => (
               <tr key={student._id}>
-                <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>{student.firstName || ''} {student.lastName || ''}</td>
-                <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>{student.email}</td>
-                <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>
+                <td>{student.firstName || ''} {student.lastName || ''}</td>
+                <td>{student.email}</td>
+                <td>
                   <ul>
                     {student.classes?.map((cls, idx) => (
                       <li key={idx}>{cls.course} ({cls.quarter} {cls.year})</li>
                     ))}
                   </ul>
                 </td>
-                <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>
+                <td>
                   <ul>
                     {student.availability &&
                       Object.entries(student.availability).map(([day, slots]) => (
@@ -85,17 +108,15 @@ function MatchesPage() {
                       ))}
                   </ul>
                 </td>
-                <td style={{ borderBottom: '1px solid #eee', padding: '8px' }}>
-                  <button style={{ padding: '6px 10px', backgroundColor: '#7c3aed', color: '#fff', border: 'none', borderRadius: '6px' }}>
-                    Message
-                  </button>
+                <td>
+                  <button className="matches-button">Message</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       ) : (
-        !loading && <p>No student data found.</p>
+        !loading && searchTerm && <p>No matching students found.</p>
       )}
     </div>
   );
