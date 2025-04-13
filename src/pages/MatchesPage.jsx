@@ -4,7 +4,15 @@ import { auth } from '../firebase';
 
 function MatchesPage() {
   const [allStudents, setAllStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const formatTime = (timeStr) => {
+    const [hour, minute] = timeStr.split(':').map(Number);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const adjustedHour = hour % 12 || 12;
+    return `${adjustedHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
+  };
 
   useEffect(() => {
     const fetchAllStudents = async () => {
@@ -16,7 +24,6 @@ function MatchesPage() {
           },
         });
 
-        // Remove duplicate emails (keep first occurrence)
         const seen = new Set();
         const uniqueStudents = res.data.filter((student) => {
           if (seen.has(student.email)) return false;
@@ -28,6 +35,8 @@ function MatchesPage() {
       } catch (err) {
         console.error(err);
         setError('Failed to fetch student data.');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -39,9 +48,11 @@ function MatchesPage() {
   return (
     <div style={{ padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
       <h1>📋 All Students in Database</h1>
+
+      {loading && <p>Loading student data...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      {allStudents.length > 0 ? (
+      {!loading && allStudents.length > 0 ? (
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
@@ -69,7 +80,7 @@ function MatchesPage() {
                     {student.availability &&
                       Object.entries(student.availability).map(([day, slots]) => (
                         <li key={day}>
-                          {day}: {slots.map((slot) => `${slot.from}–${slot.to}`).join(', ')}
+                          {day}: {slots.map((slot) => `${formatTime(slot.from)}–${formatTime(slot.to)}`).join(', ')}
                         </li>
                       ))}
                   </ul>
@@ -84,7 +95,7 @@ function MatchesPage() {
           </tbody>
         </table>
       ) : (
-        <p>No student data found.</p>
+        !loading && <p>No student data found.</p>
       )}
     </div>
   );
