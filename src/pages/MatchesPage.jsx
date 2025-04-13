@@ -20,7 +20,7 @@ function MatchesPage() {
     const fetchAllStudents = async () => {
       try {
         const token = await auth.currentUser.getIdToken();
-        const res = await axios.get('http://localhost:4000/api/all-students', {
+        const res = await axios.get('http://localhost:9000/api/all-students', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

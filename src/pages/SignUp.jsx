@@ -25,7 +25,7 @@ function SignUp() {
       if (!auth.currentUser) return;
       const uid = auth.currentUser.uid;
       try {
-        const res = await axios.get(`http://localhost:4000/api/profile-exists/${uid}`);
+        const res = await axios.get(`http://localhost:9000/api/profile-exists/${uid}`);
         if (res.data.exists) {
           setAlreadySubmitted(true);
           setMessage("✅ You've already submitted your profile. You can update or go to matches.");
@@ -73,10 +73,10 @@ function SignUp() {
     try {
       const uid = auth.currentUser.uid;
       if (alreadySubmitted) {
-        await axios.put(`http://localhost:4000/api/update-profile/${uid}`, payload);
+        await axios.put(`http://localhost:9000/api/update-profile/${uid}`, payload);
         setMessage("✅ Profile updated successfully!");
       } else {
-        await axios.post("http://localhost:4000/api/signup", {
+        await axios.post("http://localhost:9000/api/signup", {
           uid,
           email: auth.currentUser.email,
           ...payload,
