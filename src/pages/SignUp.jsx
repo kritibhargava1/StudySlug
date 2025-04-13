@@ -99,7 +99,7 @@ function SignUp() {
 
         <form onSubmit={handleSubmit}>
           <div>
-            <h2 className="signup-section-title">📘 Add Your Classes</h2>
+            <h2 className="signup-section-title">Add Your Classes</h2>
             <input type="text" placeholder="Course code (e.g. CSE101)" value={courseInput} onChange={(e) => setCourseInput(e.target.value)} />
             <input type="text" placeholder="Year (e.g. 2025)" value={year} onChange={(e) => setYear(e.target.value)} />
             <input type="text" placeholder="Quarter (e.g. Spring)" value={quarter} onChange={(e) => setQuarter(e.target.value)} />
@@ -114,7 +114,7 @@ function SignUp() {
           </div>
 
           <div style={{ marginTop: '2rem' }}>
-            <h2 className="signup-section-title">⏰ Set Your Weekly Availability</h2>
+            <h2 className="signup-section-title">Set Your Weekly Availability</h2>
             <label>Day:</label>
             <select value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
               {days.map(day => (
@@ -128,7 +128,7 @@ function SignUp() {
               <label style={{ marginLeft: '12px' }}>To:</label>
               <input type="time" value={toTime} onChange={(e) => setToTime(e.target.value)} />
               <button type="button" onClick={addAvailabilitySlot} style={{ marginLeft: '12px' }}>
-                ➕ Add Slot
+                Add Slot
               </button>
             </div>
 
@@ -152,7 +152,7 @@ function SignUp() {
               className="signup-button"
               style={{ marginTop: '1rem', background: '#7c3aed', color: 'white' }}
             >
-              👥 Meet Students in Your Class
+              Meet Students in Your Class
             </button>
           )}
         </form>

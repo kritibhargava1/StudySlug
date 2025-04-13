@@ -15,13 +15,12 @@ select {
 
 /* Section titles for clarity */
 .signup-section-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-  }
-  
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+  margin-top: 0rem;
+}
 
 /* Optional: Add focus effect */
 input[type="text"]:focus,
@@ -32,66 +31,71 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
 }
 
-
-/* Container with light yellow gradient background */
+/* Full-screen container with the yellow swirly background and semi-transparent overlay */
 .signup-container {
-    width: 100vw;
-    min-height: 100vh;
-    background: linear-gradient(45deg, #FFF9C4, #FFECB3, #FFF176);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    box-sizing: border-box;
-  }
-  
-  /* Card style in the center */
-  .signup-card {
-    background-color: white;
-    border-radius: 1rem;
-    padding: 2.5rem;
-    width: 100%;
-    max-width: 700px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Message display */
-  .signup-message {
-    margin-top: 1rem;
-    color: #333;
-    font-weight: 300;
-  }
-  
-  /* Styled buttons */
-  .signup-button {
-    background-color: #F8DE7E;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .signup-button:hover {
-    background-color: #fcc80c;
-    transform: translateY(-2px);
-  }
-  
-  /* Inputs and select */
-  input[type="text"], input[type="time"], select {
-    margin: 0.5rem 0.5rem 1rem 0;
-    padding: 0.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    width: calc(100% - 1rem);
-    font-size: 1rem;
-  }
-  
-  ul {
-    margin-top: 1rem;
-    list-style: disc;
-    padding-left: 1.5rem;
-  }
-  
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(
+              rgba(255, 255, 255, 0.7), 
+              rgba(255, 255, 255, 0.7)
+            ),
+            url("../assets/login-img.jpg") center center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Card style in the center, pushed down so the title is visible */
+.signup-card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-top: 10rem;  /* Extra margin to push the card lower on the page */
+}
+
+/* Message display */
+.signup-message {
+  margin-top: 1rem;
+  color: #333;
+  font-weight: 300;
+}
+
+/* Styled buttons */
+.signup-button {
+  background-color: #F8DE7E;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.signup-button:hover {
+  background-color: #fcc80c;
+  transform: translateY(-2px);
+}
+
+/* Inputs and select with adjusted margins and paddings */
+input[type="text"],
+input[type="time"],
+select {
+  margin: 0.5rem 0.5rem 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  width: calc(100% - 1rem);
+  font-size: 1rem;
+}
+
+ul {
+  margin-top: 1rem;
+  list-style: disc;
+  padding-left: 1.5rem;
+}
