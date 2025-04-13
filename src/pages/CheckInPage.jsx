@@ -2,27 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { auth } from '../firebase';
 import mongoose from 'mongoose';
+import '../styles/CheckInPage.css'; // Import the CSS file
 
 const locations = [
-    'McHenry Library',
-    'Science Hill',
-    'Kresge Café',
-    'Crown/Merrill Dining',
-    'College Nine',
-    'College Ten',
-    'Cowell College',
-    'Stevenson College',
-    'Porter College',
-    'Rachel Carson College',
-    'Oakes College',
-    'Kresge College',
-    'Bay Tree Bookstore',
-    'East Field',
-    'OPERS',
-    'Music Center',
-    'Engineering 2'
-  ];
-  
+  'McHenry Library',
+  'Science Hill',
+  'Kresge Café',
+  'Crown/Merrill Dining',
+  'College Nine',
+  'College Ten',
+  'Cowell College',
+  'Stevenson College',
+  'Porter College',
+  'Rachel Carson College',
+  'Oakes College',
+  'Kresge College',
+  'Bay Tree Bookstore',
+  'East Field',
+  'OPERS',
+  'Music Center',
+  'Engineering 2'
+];
 
 function CheckInPage() {
   const [location, setLocation] = useState('');
@@ -34,7 +34,6 @@ function CheckInPage() {
       setMessage('Please log in first.');
       return;
     }
-
 
     const payload = {
       uid: auth.currentUser.uid,
@@ -52,30 +51,36 @@ function CheckInPage() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">📍 Check In</h1>
-      <select value={location} onChange={(e) => setLocation(e.target.value)} className="w-full p-2 mb-2 border rounded">
-        <option value="">Select location</option>
-        {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
-      </select>
-      <input
-        type="time"
-        value={availableUntil}
-        onChange={(e) => setAvailableUntil(e.target.value)}
-        className="w-full p-2 mb-2 border rounded"
-        placeholder="Available until"
-      />
-      <button onClick={handleCheckIn} className="bg-purple-600 text-white px-4 py-2 rounded">Check In</button>
-      {message && <p className="mt-2">{message}</p>}
+    <div className="page-container">
+      <div className="checkin-container">
+        <h1 className="checkin-title">Check In</h1>
+        <p className="checkin-info">
+          Check in to let other students know when you're looking for a study buddy!
+        </p>
+        <select
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="checkin-select"
+        >
+          <option value="">Select location</option>
+          {locations.map(loc => (
+            <option key={loc} value={loc}>{loc}</option>
+          ))}
+        </select>
+        <input
+          type="time"
+          value={availableUntil}
+          onChange={(e) => setAvailableUntil(e.target.value)}
+          className="checkin-input"
+          placeholder="Available until"
+        />
+        <button onClick={handleCheckIn} className="checkin-button">
+          Check In
+        </button>
+        {message && <p className="checkin-message">{message}</p>}
+      </div>
     </div>
   );
 }
 
 export default CheckInPage;
-
-
-
-
-
-
-
