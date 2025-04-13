@@ -1,42 +1,122 @@
-/* Full-screen container with the same yellow gradient background as HowItWorks */
+/* Global reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Full-screen container with the yellow swirly background and semi-transparent overlay */
 .contact-container {
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    background: linear-gradient(45deg, #FFF9C4, #FFECB3, #FFF176);
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Centered white card with padding and rounded corners */
-  .contact-card {
-    width: 100%;
-    max-width: 768px;
-    border-radius: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    padding: 2.5rem;
-    text-align: center;
-  }
-  
-  /* Title styling: bold and black */
-  .contact-title {
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: #000000;
-    margin-bottom: 2rem;
-  }
-  
-  /* Paragraph text styling */
-  .contact-text {
-    font-size: 1rem;
-    color: #4b5563;
-  }
-  
-  /* Email link styling */
-  .contact-text a {
-    color: #7c3aed;
-    text-decoration: underline;
-  }
-  
+  width: 100vw;
+  min-height: 100vh;
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url("../assets/login-img.jpg") center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Centered white card with padding and rounded corners */
+.contact-card {
+  width: 100%;
+  max-width: 768px;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  text-align: center;
+  background-color: #fff;
+}
+
+/* Title styling: bold and black */
+.contact-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+/* Paragraph text styling */
+.contact-text {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 2rem;
+}
+
+.contact-text a {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
+/* FAQ Section Styling */
+.faq-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  color: #000;
+  text-align: center;
+}
+
+.faq-section {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+}
+
+.faq-question {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.faq-answer {
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+/* Feedback Section Styling */
+.feedback-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #000;
+  text-align: center;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.feedback-button {
+  align-self: center;
+  background-color: #2563EB;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-button:hover {
+  background-color: #1D4ED8;
+}
