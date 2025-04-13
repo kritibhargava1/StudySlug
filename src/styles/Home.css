@@ -1,69 +1,129 @@
-/* Full-screen container with a light yellow background */
-.home-container {
-  width: 100vw;
-  min-height: 100vh;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffe0; /* LightYellow */
-  padding: 0rem;
+/* Basic resets */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-
-.home-button:hover {
-  background-color: #fcc80c;
+html, body {
+  font-family: 'Helvetica Neue', sans-serif;
+  scroll-behavior: smooth;
+  background-color: black;
+  color: black;
 }
 
-/* Hero Section styling with animated gradient background */
-.hero-section {
-  flex: 1; /* Fills the remaining vertical space */
+/* Hero Video Section */
+.video-container {
+  position: relative;
+  height: 100vh;
   width: 100%;
-  background: linear-gradient(45deg, #FFF9C4, #FFECB3, #FFF176); /* Different shades of yellow */
-  background-size: 600% 600%;
-  animation: gradientAnimation 8s ease infinite;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-overlay h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 0 20px rgba(0,0,0,0.5);
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Scroll Down Arrow */
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: white;
+  animation: bounce 2s infinite;
+  z-index: 3;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 5rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 2rem;
+  align-items: center;
+
+  /* Gradient background animation */
+  background: linear-gradient(-45deg, #facc15, #fcd34d, #fde68a, #fef08a);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+
+  transition: background 1s;
 }
 
-/* Keyframes for the gradient animation */
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Hero title styling: larger and prominent */
-.hero-title {
-  font-size: 3rem; /* Increased size for impact */
-  font-weight: 800;
-  color: #333; /* Dark grey for contrast */
+.section h2 {
+  font-size: 2.5rem;
   margin-bottom: 1rem;
-}
-
-/* Hero subtitle styling */
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: #6b7280;
-  margin-bottom: 2rem;
-}
-
-/* Hero CTA button styling */
-.hero-button {
-  background-color: #F8DE7E;  /* Matches navigation buttons */
   color: black;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.hero-button:hover {
-  background-color: #fcc80c;
+.section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  text-align: center;
+  color: black;
+  line-height: 1.6;
+}
+
+.cta-button {
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: #F8DE7E;
+  color: black;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+/* Keyframes for animated background movement */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

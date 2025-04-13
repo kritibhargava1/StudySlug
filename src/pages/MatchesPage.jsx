@@ -3,6 +3,7 @@ import axios from 'axios';
 import { auth } from '../firebase';
 import '../styles/MatchesPage.css';
 
+
 function MatchesPage() {
   const [allStudents, setAllStudents] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -62,15 +63,17 @@ function MatchesPage() {
 
   return (
     <div className="matches-container">
-      <h1 className="matches-heading">📋 All Students in Database</h1>
+      <h1 className="matches-heading"> Find a Slug Study Buddy</h1>
 
-      <input
-        type="text"
-        className="matches-search-input"
-        placeholder="Search by course (e.g. CSE101), email, or day"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="matches-search-wrapper">
+        <input
+          type="text"
+          className="matches-search-input"
+          placeholder="Search by course (e.g. CSE101), email, or day"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
       {loading && <p>Loading student data...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -79,7 +82,7 @@ function MatchesPage() {
         <table className="matches-table">
           <thead>
             <tr>
-              <th>Name</th>
+              <th>     </th>
               <th>Email</th>
               <th>Classes</th>
               <th>Availability</th>
@@ -109,7 +112,13 @@ function MatchesPage() {
                   </ul>
                 </td>
                 <td>
-                  <button className="matches-button">Message</button>
+                  <a
+                    href={`mailto:${student.email}`}
+                    className="matches-button"
+                    style={{ textDecoration: 'none', display: 'inline-block' }}
+                  >
+                    Message
+                  </a>
                 </td>
               </tr>
             ))}
