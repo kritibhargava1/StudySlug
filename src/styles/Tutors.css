@@ -1,0 +1,91 @@
+/* Tutors.css */
+.tutors-container {
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #ffffe0; /* LightYellow background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .back-button {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .tutors-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #333;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tutors-subtitle {
+    font-size: 1.1rem;
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+  
+  .tutors-form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tutors-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    resize: vertical;
+  }
+  
+  .tutors-submit {
+    background-color: #F8DE7E;
+    color: black;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tutors-submit:hover {
+    background-color: #fcc80c;
+  }
+  
+  .tutors-error {
+    margin-top: 1rem;
+    color: #dc2626;
+    font-size: 1rem;
+  }
+  
+  .tutors-answer {
+    margin-top: 2rem;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: left;
+  }
+  
+  .tutors-answer h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+  }
+  

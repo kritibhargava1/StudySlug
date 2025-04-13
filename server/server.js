@@ -58,6 +58,7 @@ app.post('/api/signup', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 // Update existing profile
 app.put('/api/update-profile/:uid', async (req, res) => {
   const { uid } = req.params;
@@ -85,8 +86,6 @@ app.put('/api/update-profile/:uid', async (req, res) => {
   }
 });
 
-
-
 // ✅ Route to fetch all students
 app.get('/api/all-students', async (req, res) => {
   try {
@@ -110,8 +109,57 @@ app.get('/api/profile-exists/:uid', async (req, res) => {
   }
 });
 
+/* ============================
+   Gemini SDK Configuration
+   ============================ */
+
+// Import and initialize the Gemini SDK
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// Create an instance of the Gemini client with your API key
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+
+// Get the generative model you wish to use (e.g., "gemini-1.5-flash")
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+/* ============================
+   Gemini Chat Endpoint
+   ============================ */
+
+/**
+ * POST /api/gemini-chat
+ * This endpoint receives JSON with:
+ *   - chat: string (the user’s message)
+ *   - history: Array (optional conversation history)
+ *
+ * It sends the user's message to the Gemini API and returns the generated response.
+ */
+app.post('/api/gemini-chat', async (req, res) => {
+  try {
+    // Extract the user's message and history.
+    // We expect the frontend to send the key "chat" (adjust if necessary).
+    const chatHistory = req.body.history || [];
+    const msg = req.body.chat || req.body.message;
+
+    // Start a new chat session with any conversation history.
+    const chat = model.startChat({ history: chatHistory });
+    
+    // Send the user's message to Gemini.
+    const result = await chat.sendMessage(msg);
+    
+    // Await and extract the complete response.
+    const response = await result.response;
+    const text = response.text();
+    
+    // Return the generated response as JSON.
+    res.json({ text: text });
+  } catch (error) {
+    console.error("Error processing Gemini chat request:", error);
+    res.status(500).json({ text: "An error occurred while processing your message." });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
-
